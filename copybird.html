@@ -1,0 +1,193 @@
+
+<!DOCTYPE html> 
+<html>
+  <head>
+    <script src="./jaws-dynamic.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <title>copybird</title>
+    <!--=============================-->
+    <!-- Copy this part to your app. -->
+    <!-- START                       -->
+    <!--=============================-->
+    <!-- libs -->
+    <!--[if IE]><script type="text/javascript" src="lib/excanvas.js"></script><![endif]-->
+    <script src="lib/prototype-1.6.0.2.js"></script>
+
+    <!-- box2djs -->
+    <script src='js/box2d/common/b2Settings.js'></script>
+    <script src='js/box2d/common/math/b2Vec2.js'></script>
+    <script src='js/box2d/common/math/b2Mat22.js'></script>
+    <script src='js/box2d/common/math/b2Math.js'></script>
+    <script src='js/box2d/collision/b2AABB.js'></script>
+    <script src='js/box2d/collision/b2Bound.js'></script>
+    <script src='js/box2d/collision/b2BoundValues.js'></script>
+    <script src='js/box2d/collision/b2Pair.js'></script>
+    <script src='js/box2d/collision/b2PairCallback.js'></script>
+    <script src='js/box2d/collision/b2BufferedPair.js'></script>
+    <script src='js/box2d/collision/b2PairManager.js'></script>
+    <script src='js/box2d/collision/b2BroadPhase.js'></script>
+    <script src='js/box2d/collision/b2Collision.js'></script>
+    <script src='js/box2d/collision/Features.js'></script>
+    <script src='js/box2d/collision/b2ContactID.js'></script>
+    <script src='js/box2d/collision/b2ContactPoint.js'></script>
+    <script src='js/box2d/collision/b2Distance.js'></script>
+    <script src='js/box2d/collision/b2Manifold.js'></script>
+    <script src='js/box2d/collision/b2OBB.js'></script>
+    <script src='js/box2d/collision/b2Proxy.js'></script>
+    <script src='js/box2d/collision/ClipVertex.js'></script>
+    <script src='js/box2d/collision/shapes/b2Shape.js'></script>
+    <script src='js/box2d/collision/shapes/b2ShapeDef.js'></script>
+    <script src='js/box2d/collision/shapes/b2BoxDef.js'></script>
+    <script src='js/box2d/collision/shapes/b2CircleDef.js'></script>
+    <script src='js/box2d/collision/shapes/b2CircleShape.js'></script>
+    <script src='js/box2d/collision/shapes/b2MassData.js'></script>
+    <script src='js/box2d/collision/shapes/b2PolyDef.js'></script>
+    <script src='js/box2d/collision/shapes/b2PolyShape.js'></script>
+    <script src='js/box2d/dynamics/b2Body.js'></script>
+    <script src='js/box2d/dynamics/b2BodyDef.js'></script>
+    <script src='js/box2d/dynamics/b2CollisionFilter.js'></script>
+    <script src='js/box2d/dynamics/b2Island.js'></script>
+    <script src='js/box2d/dynamics/b2TimeStep.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2ContactNode.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2Contact.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2ContactConstraint.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2ContactConstraintPoint.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2ContactRegister.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2ContactSolver.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2CircleContact.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2Conservative.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2NullContact.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2PolyAndCircleContact.js'></script>
+    <script src='js/box2d/dynamics/contacts/b2PolyContact.js'></script>
+    <script src='js/box2d/dynamics/b2ContactManager.js'></script>
+    <script src='js/box2d/dynamics/b2World.js'></script>
+    <script src='js/box2d/dynamics/b2WorldListener.js'></script>
+    <script src='js/box2d/dynamics/joints/b2JointNode.js'></script>
+    <script src='js/box2d/dynamics/joints/b2Joint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2JointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2DistanceJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2DistanceJointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2Jacobian.js'></script>
+    <script src='js/box2d/dynamics/joints/b2GearJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2GearJointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2MouseJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2MouseJointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2PrismaticJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2PrismaticJointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2PulleyJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2PulleyJointDef.js'></script>
+    <script src='js/box2d/dynamics/joints/b2RevoluteJoint.js'></script>
+    <script src='js/box2d/dynamics/joints/b2RevoluteJointDef.js'></script>
+    <!--=============================-->
+    <!-- Copy this part to your app. -->
+    <!-- END                         -->
+    <!--=============================-->
+  </head>
+<body>
+    
+    <canvas width=500 height=300 id="canvas"></canvas>
+    FPS: <span id="fps"></span>. Move with arrows, shoot with space. Select with Return.
+
+    <h3>jaws log</h3>
+    <div id="jaws-log"></div>
+
+    <script>
+
+
+    /*
+    *
+    * PlayState is the actual game play. We switch to it once user choses "Start game"
+    *
+    */
+    var fps = document.getElementById("fps");
+
+    var worldAABB = new b2AABB();
+    worldAABB.minVertex.Set(-1000, -1000);
+    worldAABB.maxVertex.Set(1000, 1000);
+    var gravity = new b2Vec2(0, 300);
+    var doSleep = true;
+    var world = new b2World(worldAABB, gravity, doSleep); 
+    
+    function PlayState() {
+      var player
+
+      this.setup = function() {
+        player = new jaws.Sprite({image: "plane.png", x: 10, y:100, scale: 1})
+        jaws.on_keydown("esc",  function() { jaws.switchGameState(MenuState) })
+        jaws.preventDefaultKeys(["up", "down", "left", "right", "space"])
+      }
+
+      this.update = function() {
+        if(jaws.pressed("space"))  { player.y -= 2 }
+        if(jaws.pressed("enter")) { 
+
+        }
+
+        forceInsideCanvas(player)
+        fps.innerHTML = jaws.game_loop.fps
+      }
+
+      this.draw = function() {
+        jaws.clear()
+        player.draw()
+      }
+
+      /* Simular to example1 but now we're using jaws properties to get width and height of canvas instead */
+      /* This mainly since we let jaws handle the canvas now */
+      function isOutsideCanvas(item) { 
+        return (item.x < 0 || item.y < 0 || item.x > jaws.width || item.y > jaws.height) 
+      }
+      function forceInsideCanvas(item) {
+        if(item.x < 0)                  { item.x = 0  }
+        if(item.x + item.width > jaws.width)     { item.x = jaws.width - item.width }
+        if(item.y < 0)                  { item.y = 0 }
+        if(item.y + item.height  > jaws.height)  { item.y = jaws.height - item.height }
+      }
+
+    }
+
+    /*
+    *
+    * MenuState is our lobby/welcome menu were gamer can chose start, high score and settings.
+    * For this example we have only implemented start. Start switches active game state by simply:
+    *   jaws.switchGameState(play)   (jaws.switchGameState(PlayState) would have worked too)
+    *
+    */
+    function MenuState() {
+      var index = 0
+      var items = ["Start", "Settings", "Highscore"]
+
+      this.setup = function() {
+        index = 0
+        jaws.on_keydown(["down","s"],       function()  { index++; if(index >= items.length) {index=items.length-1} } )
+        jaws.on_keydown(["up","w"],         function()  { index--; if(index < 0) {index=0} } )
+        jaws.on_keydown(["enter","space"],  function()  { if(items[index]=="Start") {jaws.switchGameState(PlayState) } } )
+      }
+
+      this.draw = function() {
+        jaws.context.clearRect(0,0,jaws.width,jaws.height)
+        for(var i=0; items[i]; i++) {
+          // jaws.context.translate(0.5, 0.5)
+          jaws.context.font = "bold 50pt terminal";
+          jaws.context.lineWidth = 10
+          jaws.context.fillStyle =  (i == index) ? "Red" : "Black"
+          jaws.context.strokeStyle =  "rgba(200,200,200,0.0)"
+          jaws.context.fillText(items[i], 30, 100 + i * 60)
+        }  
+      }
+    }
+
+    /*
+    *
+    * Our script-entry point
+    *
+    */
+    window.onload = function() {
+      jaws.assets.add("plane.png")
+      jaws.start(MenuState)
+    }
+  </script>
+
+</body>
+</html>
+
